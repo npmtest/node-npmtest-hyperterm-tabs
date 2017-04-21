@@ -1,0 +1,1055 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for node-npmtest-hyperterm-tabs/node_modules/hyperterm-tabs/index.js</title>
+    <meta charset="utf-8">
+    <style>
+        body, html {
+            margin:0; padding: 0;
+        }
+        body {
+            font-family: Arial, Helvetica;
+            font-size: 10pt;
+        }
+        div.header, div.footer {
+            background: #eee;
+            padding: 1em;
+        }
+        div.header {
+            height: 160px;
+            padding: 0 1em 0 1em;
+            z-index: 100;
+            position: fixed;
+            top: 0;
+            border-bottom: 1px solid #666;
+            width: 100%;
+        }
+        div.footer {
+            border-top: 1px solid #666;
+        }
+        div.body {
+            margin-top: 170px;
+        }
+        div.meta {
+            font-size: 90%;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            font-weight: normal;
+        }
+        h1 {
+            font-size: 12pt;
+        }
+        h2 {
+            font-size: 10pt;
+        }
+        pre {
+            font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            tab-size: 2;
+        }
+
+        div.path { font-size: 110%; }
+        div.path a:link, div.path a:visited { color: #000; }
+        table.coverage { border-collapse: collapse; margin:0; padding: 0 }
+
+        table.coverage td {
+            margin: 0;
+            padding: 0;
+            color: #111;
+            vertical-align: top;
+        }
+        table.coverage td.line-count {
+            width: 50px;
+            text-align: right;
+            padding-right: 5px;
+        }
+        table.coverage td.line-coverage {
+            color: #777 !important;
+            text-align: right;
+            border-left: 1px solid #666;
+            border-right: 1px solid #666;
+        }
+
+        table.coverage td.text {
+        }
+
+        table.coverage td span.cline-any {
+            display: inline-block;
+            padding: 0 5px;
+            width: 40px;
+        }
+        table.coverage td span.cline-neutral {
+            background: #eee;
+        }
+        table.coverage td span.cline-yes {
+            background: #b5d592;
+            color: #999;
+        }
+        table.coverage td span.cline-no {
+            background: #fc8c84;
+        }
+
+        .cstat-yes { color: #111; }
+        .cstat-no { background: #fc8c84; color: #111; }
+        .fstat-no { background: #ffc520; color: #111 !important; }
+        .cbranch-no { background:  yellow !important; color: #111; }
+
+        .cstat-skip { background: #ddd; color: #111; }
+        .fstat-skip { background: #ddd; color: #111 !important; }
+        .cbranch-skip { background: #ddd !important; color: #111; }
+
+        .missing-if-branch {
+            display: inline-block;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: black;
+            color: yellow;
+        }
+
+        .skip-if-branch {
+            display: none;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: #ccc;
+            color: white;
+        }
+
+        .missing-if-branch .typ, .skip-if-branch .typ {
+            color: inherit !important;
+        }
+
+        .entity, .metric { font-weight: bold; }
+        .metric { display: inline-block; border: 1px solid #333; padding: 0.3em; background: white; }
+        .metric small { font-size: 80%; font-weight: normal; color: #666; }
+
+        div.coverage-summary table { border-collapse: collapse; margin: 3em; font-size: 110%; }
+        div.coverage-summary td, div.coverage-summary table  th { margin: 0; padding: 0.25em 1em; border-top: 1px solid #666; border-bottom: 1px solid #666; }
+        div.coverage-summary th { text-align: left; border: 1px solid #666; background: #eee; font-weight: normal; }
+        div.coverage-summary th.file { border-right: none !important; }
+        div.coverage-summary th.pic { border-left: none !important; text-align: right; }
+        div.coverage-summary th.pct { border-right: none !important; }
+        div.coverage-summary th.abs { border-left: none !important; text-align: right; }
+        div.coverage-summary td.pct { text-align: right; border-left: 1px solid #666; }
+        div.coverage-summary td.abs { text-align: right; font-size: 90%; color: #444; border-right: 1px solid #666; }
+        div.coverage-summary td.file { text-align: right; border-left: 1px solid #666; white-space: nowrap;  }
+        div.coverage-summary td.pic { min-width: 120px !important;  }
+        div.coverage-summary a:link { color: #000; }
+        div.coverage-summary a:visited { color: #333; }
+        div.coverage-summary tfoot td { border-top: 1px solid #666; }
+
+        div.coverage-summary .yui3-datatable-sort-indicator, div.coverage-summary .dummy-sort-indicator {
+            height: 10px;
+            width: 7px;
+            display: inline-block;
+            margin-left: 0.5em;
+        }
+        div.coverage-summary .yui3-datatable-sort-indicator {
+            background: no-repeat scroll 0 0 transparent;
+        }
+        div.coverage-summary .yui3-datatable-sorted .yui3-datatable-sort-indicator {
+            background-position: 0 -20px;
+        }
+        div.coverage-summary .yui3-datatable-sorted-desc .yui3-datatable-sort-indicator {
+            background-position: 0 -10px;
+        }
+
+        .high { background: #b5d592 !important; }
+        .medium { background: #ffe87c !important; }
+        .low { background: #fc8c84 !important; }
+
+        span.cover-fill, span.cover-empty {
+            display:inline-block;
+            border:1px solid #444;
+            background: white;
+            height: 12px;
+        }
+        span.cover-fill {
+            background: #ccc;
+            border-right: 1px solid #444;
+        }
+        span.cover-empty {
+            background: white;
+            border-left: none;
+        }
+        span.cover-full {
+            border-right: none !important;
+        }
+        pre.prettyprint {
+            border: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .com { color: #999 !important; }
+        .ignore-none { color: #999; font-weight: normal; }
+
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1 style="font-weight: bold;">
+        <a href="https://github.com/npmtest/node-npmtest-hyperterm-tabs">npmtest-hyperterm-tabs (v0.0.1)</a>
+    </h1>
+    <h1>Code coverage report for <span class="entity">node-npmtest-hyperterm-tabs/node_modules/hyperterm-tabs/index.js</span></h1>
+    <h2>
+        
+        Statements: <span class="metric">14.18% <small>(20 / 141)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Branches: <span class="metric">0% <small>(0 / 56)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Functions: <span class="metric">0% <small>(0 / 10)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Lines: <span class="metric">16.39% <small>(20 / 122)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">node-npmtest-hyperterm-tabs/node_modules/hyperterm-tabs/</a> &#187; index.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const Mousetrap = require('mousetrap');
+&nbsp;
+const LEFT = 'left';
+const RIGHT = 'right';
+&nbsp;
+// exports.decorateBrowserOptions = options =&gt; Object.assign({}, options, {
+//     titleBarStyle: 'default',
+//     transparent: false,
+// });
+&nbsp;
+const orderTabs = (orderedUids, tabs) =&gt; {
+<span class="cstat-no" title="statement not covered" >    const orderedTabs = [];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    orderedUids.forEach(uid =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        tabs.forEach(tab =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >            if (tab.uid === uid) {</span>
+<span class="cstat-no" title="statement not covered" >                orderedTabs.push(tab);</span>
+<span class="cstat-no" title="statement not covered" >                return;</span>
+            }
+        });
+    });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return orderedTabs;</span>
+};
+&nbsp;
+exports.mapHeaderState = (state, map) =&gt; <span class="cstat-no" title="statement not covered" >Object.assign({}, map, {</span>
+    cols: state.ui.cols,
+    sessionsOrdered: state.termGroups.termGroupsOrdered,
+    tabs: state.termGroups.termGroupsOrdered ? orderTabs(state.termGroups.termGroupsOrdered, map.tabs) : map.tabs,
+});
+&nbsp;
+exports.getTabsProps = (parentProps, props) =&gt; <span class="cstat-no" title="statement not covered" >Object.assign({}, props, {</span>
+    tabWidth: window.innerWidth / props.tabs.length,
+    moveTab: parentProps.moveTab,
+    sessionsOrdered: parentProps.sessionsOrdered,
+});
+&nbsp;
+exports.getTabProps = (tab, parentProps, props) =&gt; <span class="cstat-no" title="statement not covered" >Object.assign({}, props, {</span>
+    tabId: tab.uid,
+    tabPosition: parentProps.tabs.indexOf(tab),
+    tabWidth: parentProps.tabWidth,
+    moveTab: parentProps.moveTab,
+    shortcutMoveTab: parentProps.shortcutMoveTab,
+});
+&nbsp;
+exports.getTermGroupProps = (tab, parentProps, props) =&gt; <span class="cstat-no" title="statement not covered" >Object.assign({}, props, {</span>
+    shortcutMoveTab: parentProps.shortcutMoveTab,
+});
+exports.getTermProps = (tab, parentProps, props) =&gt; <span class="cstat-no" title="statement not covered" >Object.assign({}, props, {</span>
+    shortcutMoveTab: parentProps.shortcutMoveTab,
+});
+&nbsp;
+const MOVE_TAB = '@@DRAGGABLE/MOVE_TAB';
+&nbsp;
+const moveTab = (uid, position, isAfter) =&gt; (<span class="cstat-no" title="statement not covered" >{</span>
+    type: MOVE_TAB,
+    uid,
+    position,
+    isAfter,
+});
+&nbsp;
+const shortcutMoveTab = (direction) =&gt; <span class="cstat-no" title="statement not covered" >(dispatch, getState) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    const state = getState();</span>
+<span class="cstat-no" title="statement not covered" >    const activeUid = state.termGroups.activeRootGroup;</span>
+<span class="cstat-no" title="statement not covered" >    const currentIndex = state.termGroups.termGroupsOrdered.indexOf(activeUid);</span>
+<span class="cstat-no" title="statement not covered" >    let newPosition = direction === LEFT ? currentIndex - 1 : currentIndex + 1;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (newPosition === -1) {</span>
+<span class="cstat-no" title="statement not covered" >        newPosition = state.termGroups.termGroupsOrdered.length + 1;</span>
+    } else <span class="cstat-no" title="statement not covered" >if (newPosition &gt; state.termGroups.termGroupsOrdered.length - 1) {</span>
+<span class="cstat-no" title="statement not covered" >        newPosition = -1;</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    dispatch({</span>
+        type: MOVE_TAB,
+        uid: activeUid,
+        position: newPosition,
+        isAfter: direction === RIGHT,
+    });
+};
+&nbsp;
+const calculateNewIndex = (currentIndex, newIndex, isAfter) =&gt; {
+<span class="cstat-no" title="statement not covered" >    if (currentIndex === newIndex) <span class="cstat-no" title="statement not covered" >return currentIndex;</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return (isAfter) ? newIndex + 1 : newIndex;</span>
+};
+&nbsp;
+exports.reduceTermGroups = (state, action) =&gt; {
+<span class="cstat-no" title="statement not covered" >    let currentIndex;</span>
+<span class="cstat-no" title="statement not covered" >    let newIndex;</span>
+<span class="cstat-no" title="statement not covered" >    let termGroupId;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    const findTermGroupId = (termGroups = {}, sessionUid) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        const termGroupsIds = Object.keys(termGroups);</span>
+<span class="cstat-no" title="statement not covered" >        const termGroup = termGroupsIds.filter(groupId =&gt; <span class="cstat-no" title="statement not covered" >termGroups[groupId].sessionUid === sessionUid)</span>;</span>
+<span class="cstat-no" title="statement not covered" >        if (termGroup.length) {</span>
+<span class="cstat-no" title="statement not covered" >            return termGroup[0];</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return false;</span>
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    switch (action.type) {</span>
+        case 'SESSION_ADD':
+<span class="cstat-no" title="statement not covered" >            termGroupId = findTermGroupId(state.termGroups, action.uid);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (termGroupId) {</span>
+<span class="cstat-no" title="statement not covered" >                return state.set('termGroupsOrdered', (state.termGroupsOrdered || []).concat([termGroupId]));</span>
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            return state;</span>
+&nbsp;
+        case 'TERM_GROUP_EXIT':
+<span class="cstat-no" title="statement not covered" >            return state.set('termGroupsOrdered', state.termGroupsOrdered.filter(uid =&gt; <span class="cstat-no" title="statement not covered" >uid !== action.uid)</span>);</span>
+&nbsp;
+        case MOVE_TAB:
+<span class="cstat-no" title="statement not covered" >            currentIndex = state.termGroupsOrdered.indexOf(action.uid);</span>
+<span class="cstat-no" title="statement not covered" >            newIndex = calculateNewIndex(currentIndex, action.position, action.isAfter);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (currentIndex === newIndex) <span class="cstat-no" title="statement not covered" >return state;</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (currentIndex &lt; newIndex) {</span>
+<span class="cstat-no" title="statement not covered" >                return state.updateIn(['termGroupsOrdered'], (termGroups) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >                    const termGroupsOrder = termGroups.asMutable();</span>
+                    // insert to the new index
+<span class="cstat-no" title="statement not covered" >                    termGroupsOrder.splice(newIndex, 0, action.uid);</span>
+                    // remove from the old index
+<span class="cstat-no" title="statement not covered" >                    termGroupsOrder.splice(currentIndex, 1);</span>
+<span class="cstat-no" title="statement not covered" >                    return termGroupsOrder;</span>
+                });
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            return state.updateIn(['termGroupsOrdered'], (termGroups) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >                const termGroupsOrder = termGroups.asMutable();</span>
+                // remove from the old index
+<span class="cstat-no" title="statement not covered" >                termGroupsOrder.splice(currentIndex, 1);</span>
+                // insert to the new index
+<span class="cstat-no" title="statement not covered" >                termGroupsOrder.splice(newIndex, 0, action.uid);</span>
+<span class="cstat-no" title="statement not covered" >                return termGroupsOrder;</span>
+            });
+&nbsp;
+        default:
+<span class="cstat-no" title="statement not covered" >            return state;</span>
+    }
+};
+&nbsp;
+exports.mapHeaderDispatch = (dispatch, map) =&gt; <span class="cstat-no" title="statement not covered" >Object.assign({}, map, {</span>
+    moveTab<span class="fstat-no" title="function not covered" >(uid, position, isAfter) {</span>
+<span class="cstat-no" title="statement not covered" >        dispatch(moveTab(uid, position, isAfter));</span>
+    },
+    shortcutMoveTab<span class="fstat-no" title="function not covered" >(direction) {</span>
+<span class="cstat-no" title="statement not covered" >        dispatch(shortcutMoveTab(direction));</span>
+    },
+});
+&nbsp;
+exports.mapTermsDispatch = (dispatch, map) =&gt; <span class="cstat-no" title="statement not covered" >Object.assign({}, map, {</span>
+    moveTab<span class="fstat-no" title="function not covered" >(uid, position, isAfter) {</span>
+<span class="cstat-no" title="statement not covered" >        dispatch(moveTab(uid, position, isAfter));</span>
+    },
+    shortcutMoveTab<span class="fstat-no" title="function not covered" >(direction) {</span>
+<span class="cstat-no" title="statement not covered" >        dispatch(shortcutMoveTab(direction));</span>
+    },
+});
+&nbsp;
+const setActiveSession = (uid) =&gt; <span class="cstat-no" title="statement not covered" >(dispatch) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    dispatch({</span>
+        type: 'SESSION_SET_ACTIVE',
+        uid,
+    });
+};
+&nbsp;
+const setActiveGroup = (uid) =&gt; <span class="cstat-no" title="statement not covered" >(dispatch, getState) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    const { termGroups } = getState();</span>
+<span class="cstat-no" title="statement not covered" >    dispatch(setActiveSession(termGroups.activeSessions[uid]));</span>
+};
+&nbsp;
+exports.middleware = ({ dispatch, getState }) =&gt; <span class="cstat-no" title="statement not covered" >(next) =&gt; <span class="cstat-no" title="statement not covered" >(action) =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >    switch (action.type) {</span>
+        case 'UI_MOVE_TO':
+<span class="cstat-no" title="statement not covered" >            next({</span>
+                type: 'UI_MOVE_TO',
+                index: action.index,
+                effect<span class="fstat-no" title="function not covered" >() {</span>
+<span class="cstat-no" title="statement not covered" >                    const i = action.index;</span>
+<span class="cstat-no" title="statement not covered" >                    const state = getState();</span>
+<span class="cstat-no" title="statement not covered" >                    const { termGroupsOrdered } = state.termGroups;</span>
+<span class="cstat-no" title="statement not covered" >                    const uid = state.termGroups.activeRootGroup;</span>
+<span class="cstat-no" title="statement not covered" >                    if (uid === termGroupsOrdered[i]) {</span>
+<span class="cstat-no" title="statement not covered" >                        console.log('ignoring same uid');</span>
+                    } else <span class="cstat-no" title="statement not covered" >if (termGroupsOrdered[i]) {</span>
+<span class="cstat-no" title="statement not covered" >                        dispatch(setActiveGroup(termGroupsOrdered[i]));</span>
+                    } else {
+<span class="cstat-no" title="statement not covered" >                        console.log('ignoring inexistent index', i);</span>
+                    }
+                },
+            });
+<span class="cstat-no" title="statement not covered" >            break;</span>
+&nbsp;
+        case 'UI_MOVE_LEFT':
+<span class="cstat-no" title="statement not covered" >            next({</span>
+                type: 'UI_MOVE_LEFT',
+                effect<span class="fstat-no" title="function not covered" >() {</span>
+<span class="cstat-no" title="statement not covered" >                    const state = getState();</span>
+<span class="cstat-no" title="statement not covered" >                    const { termGroupsOrdered } = state.termGroups;</span>
+<span class="cstat-no" title="statement not covered" >                    const uid = state.termGroups.activeRootGroup;</span>
+<span class="cstat-no" title="statement not covered" >                    const index = termGroupsOrdered.indexOf(uid);</span>
+<span class="cstat-no" title="statement not covered" >                    const nextGroupId = termGroupsOrdered[index - 1] || termGroupsOrdered[termGroupsOrdered.length - 1];</span>
+<span class="cstat-no" title="statement not covered" >                    if (!nextGroupId || uid === nextGroupId) {</span>
+<span class="cstat-no" title="statement not covered" >                        console.log('ignoring left move action');</span>
+                    } else {
+<span class="cstat-no" title="statement not covered" >                        dispatch(setActiveGroup(nextGroupId));</span>
+                    }
+                },
+            });
+<span class="cstat-no" title="statement not covered" >            break;</span>
+&nbsp;
+        case 'UI_MOVE_RIGHT':
+<span class="cstat-no" title="statement not covered" >            next({</span>
+                type: 'UI_MOVE_RIGHT',
+                effect<span class="fstat-no" title="function not covered" >() {</span>
+<span class="cstat-no" title="statement not covered" >                    const state = getState();</span>
+<span class="cstat-no" title="statement not covered" >                    const { termGroupsOrdered } = state.termGroups;</span>
+<span class="cstat-no" title="statement not covered" >                    const uid = state.termGroups.activeRootGroup;</span>
+<span class="cstat-no" title="statement not covered" >                    const index = termGroupsOrdered.indexOf(uid);</span>
+<span class="cstat-no" title="statement not covered" >                    const nextGroupId = termGroupsOrdered[index + 1] || termGroupsOrdered[0];</span>
+<span class="cstat-no" title="statement not covered" >                    if (!nextGroupId || uid === nextGroupId) {</span>
+<span class="cstat-no" title="statement not covered" >                        console.log('ignoring right move action');</span>
+                    } else {
+<span class="cstat-no" title="statement not covered" >                        dispatch(setActiveGroup(nextGroupId));</span>
+                    }
+                },
+            });
+<span class="cstat-no" title="statement not covered" >            break;</span>
+&nbsp;
+        default:
+<span class="cstat-no" title="statement not covered" >            next(action);</span>
+    }
+};
+&nbsp;
+&nbsp;
+exports.decorateTerm = (Term, { React }) =&gt; {
+    class DecoratedTerm extends React.Component {
+        constructor<span class="fstat-no" title="function not covered" >() {</span>
+<span class="cstat-no" title="statement not covered" >            super();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            this.init = false;</span>
+        }
+&nbsp;
+        componentDidUpdate<span class="fstat-no" title="function not covered" >(prev) {</span>
+<span class="cstat-no" title="statement not covered" >            if (prev.isTermActive !== this.props.isTermActive || !this.init) {</span>
+<span class="cstat-no" title="statement not covered" >                this.init = true;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                if (this.keys) {</span>
+<span class="cstat-no" title="statement not covered" >                    this.keys.reset();</span>
+                }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                if (this.props.isTermActive) {</span>
+<span class="cstat-no" title="statement not covered" >                    const doc = this.el.term.document_;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    this.keys = new Mousetrap(doc);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    this.keys.bind(['alt+shift+left', 'ctrl+alt+shift+left'], () =&gt; { <span class="cstat-no" title="statement not covered" >this.props.shortcutMoveTab(LEFT); </span>});</span>
+<span class="cstat-no" title="statement not covered" >                    this.keys.bind(['alt+shift+right', 'ctrl+alt+shift+right'], () =&gt; { <span class="cstat-no" title="statement not covered" >this.props.shortcutMoveTab(RIGHT); </span>});</span>
+                }
+            }
+        }
+&nbsp;
+        render<span class="fstat-no" title="function not covered" >() {</span>
+<span class="cstat-no" title="statement not covered" >            return React.createElement(Term, Object.assign({}, this.props, {</span>
+                ref: (el) =&gt; { <span class="cstat-no" title="statement not covered" >this.el = el; </span>},
+            }));
+        }
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return DecoratedTerm;</span>
+};
+&nbsp;
+&nbsp;</pre></td></tr>
+</table></pre>
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a> at Fri Apr 21 2017 18:37:39 GMT+0000 (UTC)</div>
+</div>
+</body>
+</html>
